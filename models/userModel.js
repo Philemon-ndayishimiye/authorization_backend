@@ -16,6 +16,11 @@ const userModel = new Schema({
     password:{
         type:String,
         required:true
+    },
+    
+    isVerfid:{
+        type:Boolean ,
+        default:false
     }
 })
 

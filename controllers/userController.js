@@ -4,14 +4,23 @@ const jwt = require('jsonwebtoken')
 const dotenv = require('dotenv');
 dotenv.config()
 
+const secreteKey = process.env.SECRETE_KEY 
+
 
 exports.Registration = async (req,res)=>{
 
     const{fullName, Email , password}=req.body
 
     try {
+        const currentUser = await userModel.findOne({Email});
+        if(currentUser) return res.status(401).json('user already exist')
+
         const user = await userModel.create({fullName, Email , password});
         res.json({message:'user created successfully', user})
+
+        const token = jwt.sign({Email: Email}, secreteKey , {expiresIn:'1d'});
+        
+        const Url =  `http://localhost:5000/verify-email?token=${token}`;
     } catch (error) {
          console.log('error occured', error);
     }
