@@ -110,7 +110,7 @@ exports.VerifyUserEmail = async (req, res) => {
     await TokenModel.findByIdAndDelete(tokenDoc._id);
 
 
-    res.send("Email verified successfully");
+    res.send("Email verified successfully"); 
 
   } catch (error) {
 
