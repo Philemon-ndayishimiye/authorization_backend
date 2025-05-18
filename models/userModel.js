@@ -18,7 +18,7 @@ const userModel = new Schema({
         required:true
     },
     
-    isVerfid:{
+    isVerfied:{
         type:Boolean ,
         default:false
     }
